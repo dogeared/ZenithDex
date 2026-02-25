@@ -41,15 +41,16 @@ public class CardBrowserView extends VerticalLayout {
 
     private ComboBox<String> planetFilter;
     private ComboBox<String> raceFilter;
+    private ComboBox<String> sortBy;
     private List<Card> filteredCards;
 
     public CardBrowserView(CardService cardService) {
-        this.cards = cardService.getCards().stream()
-            .sorted(Comparator.comparingInt(Card::getNum))
-            .toList();
+        this.cards = List.copyOf(cardService.getCards());
         this.races = cardService.getRaces();
         this.planets = cardService.getPlanets();
-        this.filteredCards = List.copyOf(cards);
+        this.filteredCards = cards.stream()
+            .sorted(Comparator.comparing(Card::getName, String.CASE_INSENSITIVE_ORDER))
+            .toList();
 
         addClassName("card-browser");
         setAlignItems(Alignment.CENTER);
@@ -61,8 +62,8 @@ public class CardBrowserView extends VerticalLayout {
         add(title);
 
         add(buildFilterBar());
-        add(buildNavigationControls());
         add(buildCardDisplay());
+        add(buildNavigationControls());
 
         updateCard();
     }
@@ -71,18 +72,20 @@ public class CardBrowserView extends VerticalLayout {
         planetFilter = new ComboBox<>("Planet");
         planetFilter.setItems("All", "Mercury", "Venus", "Terra", "Mars", "Jupiter");
         planetFilter.setValue("All");
-        planetFilter.setWidthFull();
         planetFilter.addValueChangeListener(e -> applyFilters());
 
         raceFilter = new ComboBox<>("Race");
         raceFilter.setItems("All", "Robot", "Human", "Animod");
         raceFilter.setValue("All");
-        raceFilter.setWidthFull();
         raceFilter.addValueChangeListener(e -> applyFilters());
 
-        HorizontalLayout filterBar = new HorizontalLayout(planetFilter, raceFilter);
+        sortBy = new ComboBox<>("Sort By");
+        sortBy.setItems("Name", "Number");
+        sortBy.setValue("Name");
+        sortBy.addValueChangeListener(e -> applyFilters());
+
+        HorizontalLayout filterBar = new HorizontalLayout(planetFilter, raceFilter, sortBy);
         filterBar.addClassName("filter-bar");
-        filterBar.setWidthFull();
         filterBar.setSpacing(true);
         filterBar.setPadding(false);
         return filterBar;
@@ -121,10 +124,16 @@ public class CardBrowserView extends VerticalLayout {
     private void applyFilters() {
         String selectedPlanet = planetFilter.getValue();
         String selectedRace = raceFilter.getValue();
+        String selectedSort = sortBy.getValue();
+
+        Comparator<Card> comparator = "Number".equals(selectedSort)
+            ? Comparator.comparingInt(Card::getNum)
+            : Comparator.comparing(Card::getName, String.CASE_INSENSITIVE_ORDER);
 
         filteredCards = cards.stream()
             .filter(c -> "All".equals(selectedPlanet) || planets.getOrDefault(c.getPlanet(), "").equals(selectedPlanet))
             .filter(c -> "All".equals(selectedRace) || races.getOrDefault(c.getRace(), "").equals(selectedRace))
+            .sorted(comparator)
             .toList();
 
         currentIndex = 0;

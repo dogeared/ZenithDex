@@ -10,18 +10,23 @@
 
 .card-browser .filter-bar {
     margin-bottom: 8px;
+    justify-content: center;
+}
+
+.card-browser .filter-bar vaadin-combo-box {
+    max-width: 200px;
 }
 
 .card-browser .nav-bar {
-    margin-bottom: 12px;
+    margin-top: 12px;
 }
 
 .card-browser .card-display {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     gap: 16px;
-    width: 100%;
 }
 
 .card-browser .card-image {
@@ -37,6 +42,7 @@
 .card-browser .details-panel {
     flex: 1;
     min-width: 0;
+    max-width: 300px;
     padding: 12px 16px;
     background: var(--lumo-contrast-5pct);
     border-radius: 8px;
@@ -64,6 +70,16 @@
 }
 
 @media (max-width: 600px) {
+    .card-browser .filter-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+
+    .card-browser .filter-bar vaadin-combo-box {
+        margin-top: -8px;
+    }
+
     .card-browser .card-display {
         flex-direction: column;
         align-items: center;
