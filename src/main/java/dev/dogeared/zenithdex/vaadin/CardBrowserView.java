@@ -5,11 +5,11 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -30,7 +30,6 @@ public class CardBrowserView extends VerticalLayout {
     private static final int CARD_WIDTH = 200;
     private static final int CARD_HEIGHT = 313;
 
-    private final CardService cardService;
     private final List<Card> cards;
     private final Map<Integer, String> races;
     private final Map<Integer, String> planets;
@@ -40,13 +39,11 @@ public class CardBrowserView extends VerticalLayout {
     private Div detailsPanel;
     private Span indexLabel;
 
-    // Filter combos
     private ComboBox<String> planetFilter;
     private ComboBox<String> raceFilter;
     private List<Card> filteredCards;
 
     public CardBrowserView(CardService cardService) {
-        this.cardService = cardService;
         this.cards = cardService.getCards().stream()
             .sorted(Comparator.comparingInt(Card::getNum))
             .toList();
@@ -54,16 +51,18 @@ public class CardBrowserView extends VerticalLayout {
         this.planets = cardService.getPlanets();
         this.filteredCards = List.copyOf(cards);
 
+        addClassName("card-browser");
         setAlignItems(Alignment.CENTER);
         setPadding(true);
-        setSpacing(true);
+        setSpacing(false);
 
-        H1 title = new H1("ZenithDex Card Browser");
+        H2 title = new H2("ZenithDex");
+        title.addClassName("title");
         add(title);
 
         add(buildFilterBar());
-        add(buildCardDisplay());
         add(buildNavigationControls());
+        add(buildCardDisplay());
 
         updateCard();
     }
@@ -72,53 +71,49 @@ public class CardBrowserView extends VerticalLayout {
         planetFilter = new ComboBox<>("Planet");
         planetFilter.setItems("All", "Mercury", "Venus", "Terra", "Mars", "Jupiter");
         planetFilter.setValue("All");
+        planetFilter.setWidthFull();
         planetFilter.addValueChangeListener(e -> applyFilters());
 
         raceFilter = new ComboBox<>("Race");
         raceFilter.setItems("All", "Robot", "Human", "Animod");
         raceFilter.setValue("All");
+        raceFilter.setWidthFull();
         raceFilter.addValueChangeListener(e -> applyFilters());
 
         HorizontalLayout filterBar = new HorizontalLayout(planetFilter, raceFilter);
-        filterBar.setAlignItems(Alignment.BASELINE);
+        filterBar.addClassName("filter-bar");
+        filterBar.setWidthFull();
+        filterBar.setSpacing(true);
+        filterBar.setPadding(false);
         return filterBar;
     }
 
-    private HorizontalLayout buildCardDisplay() {
+    private Div buildCardDisplay() {
         cardImage = new Div();
-        cardImage.setWidth(CARD_WIDTH + "px");
-        cardImage.setHeight(CARD_HEIGHT + "px");
-        cardImage.getStyle()
-            .set("background-image", "url('images/cards.jpg')")
-            .set("background-repeat", "no-repeat")
-            .set("border-radius", "8px")
-            .set("box-shadow", "0 4px 12px rgba(0,0,0,0.3)")
-            .set("flex-shrink", "0");
+        cardImage.addClassName("card-image");
 
         detailsPanel = new Div();
-        detailsPanel.setWidth("300px");
-        detailsPanel.getStyle()
-            .set("padding", "16px")
-            .set("background", "var(--lumo-contrast-5pct)")
-            .set("border-radius", "8px");
+        detailsPanel.addClassName("details-panel");
 
-        HorizontalLayout display = new HorizontalLayout(cardImage, detailsPanel);
-        display.setAlignItems(FlexComponent.Alignment.START);
-        display.setSpacing(true);
+        Div display = new Div(cardImage, detailsPanel);
+        display.addClassName("card-display");
         return display;
     }
 
     private HorizontalLayout buildNavigationControls() {
-        Button prevBtn = new Button("Previous", e -> navigate(-1));
+        Button prevBtn = new Button(VaadinIcon.ARROW_LEFT.create(), e -> navigate(-1));
         prevBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
-        Button nextBtn = new Button("Next", e -> navigate(1));
+        Button nextBtn = new Button(VaadinIcon.ARROW_RIGHT.create(), e -> navigate(1));
         nextBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
         indexLabel = new Span();
 
         HorizontalLayout nav = new HorizontalLayout(prevBtn, indexLabel, nextBtn);
+        nav.addClassName("nav-bar");
         nav.setAlignItems(Alignment.CENTER);
+        nav.setJustifyContentMode(JustifyContentMode.CENTER);
+        nav.setWidthFull();
         nav.setSpacing(true);
         return nav;
     }
@@ -153,36 +148,34 @@ public class CardBrowserView extends VerticalLayout {
 
         Card card = filteredCards.get(currentIndex);
 
-        // Sprite sheet uses 1-based row/col; convert to 0-based pixel offsets
         int offsetX = (card.getCol() - 1) * CARD_WIDTH;
         int offsetY = (card.getRow() - 1) * CARD_HEIGHT;
 
         cardImage.getStyle()
-            .set("background-image", "url('images/cards.jpg')")
             .set("background-position", "-" + offsetX + "px -" + offsetY + "px");
 
         detailsPanel.removeAll();
 
         H3 cardName = new H3(card.getName());
-        cardName.getStyle().set("margin-top", "0");
+        cardName.addClassName("card-name");
         detailsPanel.add(cardName);
 
         String planetName = planets.getOrDefault(card.getPlanet(), "Unknown");
         String raceName = races.getOrDefault(card.getRace(), "Unknown");
 
-        detailsPanel.add(new Html("<div><strong>Number:</strong> " + card.getNum() + "</div>"));
-        detailsPanel.add(new Html("<div><strong>Planet:</strong> " + planetName + "</div>"));
-        detailsPanel.add(new Html("<div><strong>Race:</strong> " + raceName + "</div>"));
-        detailsPanel.add(new Html("<div><strong>Cost:</strong> " + card.getCost() + "</div>"));
+        Div statsRow = new Div();
+        statsRow.addClassName("stats-row");
+        statsRow.add(
+            new Html("<span><strong>#</strong> " + card.getNum() + "</span>"),
+            new Html("<span><strong>Planet:</strong> " + planetName + "</span>"),
+            new Html("<span><strong>Race:</strong> " + raceName + "</span>"),
+            new Html("<span><strong>Cost:</strong> " + card.getCost() + "</span>")
+        );
+        detailsPanel.add(statsRow);
 
         if (card.getDesc() != null && !card.getDesc().isEmpty()) {
             Div descDiv = new Div();
-            descDiv.getStyle()
-                .set("margin-top", "12px")
-                .set("padding", "8px")
-                .set("background", "var(--lumo-contrast-5pct)")
-                .set("border-radius", "4px")
-                .set("font-style", "italic");
+            descDiv.addClassName("card-desc");
             descDiv.setText(card.getDesc());
             detailsPanel.add(descDiv);
         }
