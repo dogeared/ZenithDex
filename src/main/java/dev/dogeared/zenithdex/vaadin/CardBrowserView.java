@@ -22,8 +22,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-@Route("cards")
-@PageTitle("ZenithDex - Card Browser")
+@Route("")
+@PageTitle("ZenithDex")
 @AnonymousAllowed
 public class CardBrowserView extends VerticalLayout {
 
