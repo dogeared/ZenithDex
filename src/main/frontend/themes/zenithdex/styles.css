@@ -32,7 +32,7 @@
 .card-browser .card-image {
     width: 200px;
     height: 313px;
-    background-image: url('images/cards.jpg');
+    background-image: url('/images/cards.jpg');
     background-repeat: no-repeat;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
