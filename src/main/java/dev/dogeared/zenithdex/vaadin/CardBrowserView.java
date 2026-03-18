@@ -63,7 +63,6 @@ public class CardBrowserView extends VerticalLayout {
 
         add(buildFilterBar());
         add(buildCardDisplay());
-        add(buildNavigationControls());
 
         updateCard();
     }
@@ -95,10 +94,12 @@ public class CardBrowserView extends VerticalLayout {
         cardImage = new Div();
         cardImage.addClassName("card-image");
 
+        HorizontalLayout nav = buildNavigationControls();
+
         detailsPanel = new Div();
         detailsPanel.addClassName("details-panel");
 
-        Div display = new Div(cardImage, detailsPanel);
+        Div display = new Div(cardImage, nav, detailsPanel);
         display.addClassName("card-display");
         return display;
     }
