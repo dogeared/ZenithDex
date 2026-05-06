@@ -91,25 +91,34 @@ public class CardBrowserView extends VerticalLayout {
     }
 
     private Div buildCardDisplay() {
+        // Mobile-only flanking buttons (hidden on desktop via CSS)
+        Button mobilePrevBtn = new Button(VaadinIcon.ARROW_LEFT.create(), e -> navigate(-1));
+        mobilePrevBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        mobilePrevBtn.addClassName("mobile-nav-btn");
+
+        Button mobileNextBtn = new Button(VaadinIcon.ARROW_RIGHT.create(), e -> navigate(1));
+        mobileNextBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        mobileNextBtn.addClassName("mobile-nav-btn");
+
         cardImage = new Div();
         cardImage.addClassName("card-image");
 
-        HorizontalLayout nav = buildNavigationControls();
+        HorizontalLayout imageRow = new HorizontalLayout(mobilePrevBtn, cardImage, mobileNextBtn);
+        imageRow.addClassName("card-image-row");
+        imageRow.setAlignItems(Alignment.CENTER);
+        imageRow.setSpacing(true);
 
-        detailsPanel = new Div();
-        detailsPanel.addClassName("details-panel");
+        Div imageSection = new Div(imageRow);
+        imageSection.addClassName("card-image-section");
 
-        Div display = new Div(cardImage, nav, detailsPanel);
-        display.addClassName("card-display");
-        return display;
-    }
-
-    private HorizontalLayout buildNavigationControls() {
+        // Desktop nav bar (hidden on mobile via CSS)
         Button prevBtn = new Button(VaadinIcon.ARROW_LEFT.create(), e -> navigate(-1));
         prevBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        prevBtn.addClassName("desktop-nav-btn");
 
         Button nextBtn = new Button(VaadinIcon.ARROW_RIGHT.create(), e -> navigate(1));
         nextBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        nextBtn.addClassName("desktop-nav-btn");
 
         indexLabel = new Span();
 
@@ -119,7 +128,13 @@ public class CardBrowserView extends VerticalLayout {
         nav.setJustifyContentMode(JustifyContentMode.CENTER);
         nav.setWidthFull();
         nav.setSpacing(true);
-        return nav;
+
+        detailsPanel = new Div();
+        detailsPanel.addClassName("details-panel");
+
+        Div display = new Div(imageSection, detailsPanel, nav);
+        display.addClassName("card-display");
+        return display;
     }
 
     private void applyFilters() {
