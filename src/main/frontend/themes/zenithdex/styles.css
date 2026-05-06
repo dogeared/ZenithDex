@@ -109,7 +109,7 @@
 }
 
 .card-browser .mobile-nav-btn {
-    display: none;
+    display: none !important;
 }
 
 .card-browser .card-image {
@@ -173,10 +173,10 @@
     }
 
     .card-browser .mobile-nav-btn {
-        display: inline-flex;
+        display: inline-flex !important;
     }
 
     .card-browser .desktop-nav-btn {
-        display: none;
+        display: none !important;
     }
 }
