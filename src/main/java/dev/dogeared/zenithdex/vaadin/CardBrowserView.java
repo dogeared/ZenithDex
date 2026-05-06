@@ -21,6 +21,8 @@ import dev.dogeared.zenithdex.service.CardService;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Route("")
 @PageTitle("ZenithDex")
@@ -43,6 +45,7 @@ public class CardBrowserView extends VerticalLayout {
     private ComboBox<String> raceFilter;
     private ComboBox<String> sortBy;
     private List<Card> filteredCards;
+    private Div alphabetBar;
 
     public CardBrowserView(CardService cardService) {
         this.cards = List.copyOf(cardService.getCards());
@@ -62,9 +65,11 @@ public class CardBrowserView extends VerticalLayout {
         add(title);
 
         add(buildFilterBar());
+        add(buildAlphabetBar());
         add(buildCardDisplay());
 
         updateCard();
+        updateAlphabetBar();
     }
 
     private HorizontalLayout buildFilterBar() {
@@ -88,6 +93,43 @@ public class CardBrowserView extends VerticalLayout {
         filterBar.setSpacing(true);
         filterBar.setPadding(false);
         return filterBar;
+    }
+
+    private Div buildAlphabetBar() {
+        alphabetBar = new Div();
+        alphabetBar.addClassName("alphabet-bar");
+        Div wrapper = new Div(alphabetBar);
+        wrapper.addClassName("alphabet-bar-wrapper");
+        return wrapper;
+    }
+
+    private void updateAlphabetBar() {
+        alphabetBar.removeAll();
+        Set<Character> available = filteredCards.stream()
+            .filter(c -> c.getName() != null && !c.getName().isEmpty())
+            .map(c -> Character.toUpperCase(c.getName().charAt(0)))
+            .collect(Collectors.toSet());
+
+        for (char ch = 'A'; ch <= 'Z'; ch++) {
+            final char letter = ch;
+            if (!available.contains(letter)) continue;
+            Button btn = new Button(String.valueOf(letter), e -> jumpToLetter(letter));
+            btn.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+            btn.addClassName("alpha-letter");
+            alphabetBar.add(btn);
+        }
+    }
+
+    private void jumpToLetter(char letter) {
+        for (int i = 0; i < filteredCards.size(); i++) {
+            String name = filteredCards.get(i).getName();
+            if (name != null && !name.isEmpty()
+                    && Character.toUpperCase(name.charAt(0)) == letter) {
+                currentIndex = i;
+                updateCard();
+                return;
+            }
+        }
     }
 
     private Div buildCardDisplay() {
@@ -154,6 +196,7 @@ public class CardBrowserView extends VerticalLayout {
 
         currentIndex = 0;
         updateCard();
+        updateAlphabetBar();
     }
 
     private void navigate(int direction) {

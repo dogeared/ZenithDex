@@ -1,15 +1,16 @@
 .card-browser {
     max-width: 800px;
     margin: 0 auto;
+    padding-top: 4px !important;
 }
 
 .card-browser .title {
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 .card-browser .filter-bar {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     justify-content: center;
 }
 
@@ -17,13 +18,66 @@
     max-width: 200px;
 }
 
+/* Alphabet bar */
+
+.card-browser .alphabet-bar-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 6px;
+}
+
+.card-browser .alphabet-bar-wrapper::before,
+.card-browser .alphabet-bar-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.card-browser .alphabet-bar-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--lumo-base-color), transparent);
+}
+
+.card-browser .alphabet-bar-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--lumo-base-color), transparent);
+}
+
+.card-browser .alphabet-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 2px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 2px 4px;
+}
+
+.card-browser .alphabet-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.card-browser .alpha-letter {
+    min-width: 2rem;
+    padding: 0 4px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+/* Card display */
+
 .card-browser .card-display {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 12px;
 }
 
 .card-browser .card-display .card-image-section {
@@ -38,7 +92,7 @@
 .card-browser .card-display .nav-bar {
     order: 3;
     width: 100%;
-    margin-top: 4px;
+    margin-top: 2px;
 }
 
 .card-browser .card-image-row {
@@ -66,7 +120,7 @@
     flex: 1;
     min-width: 0;
     max-width: 300px;
-    padding: 12px 16px;
+    padding: 8px 12px;
     background: var(--lumo-contrast-5pct);
     border-radius: 8px;
     box-sizing: border-box;
@@ -74,18 +128,18 @@
 
 .card-browser .card-name {
     margin-top: 0;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .card-browser .stats-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px 16px;
-    margin-bottom: 8px;
+    gap: 4px 12px;
+    margin-bottom: 6px;
 }
 
 .card-browser .card-desc {
-    padding: 8px;
+    padding: 6px 8px;
     background: var(--lumo-contrast-5pct);
     border-radius: 4px;
     font-style: italic;
@@ -97,7 +151,7 @@
         flex-direction: column;
         align-items: center;
         gap: 0;
-        margin-top: 8px;
+        margin-top: 4px;
     }
 
     .card-browser .filter-bar vaadin-combo-box {
