@@ -4,6 +4,7 @@ import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.details.Details;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
@@ -44,6 +45,7 @@ public class CardBrowserView extends VerticalLayout {
     private ComboBox<String> planetFilter;
     private ComboBox<String> raceFilter;
     private ComboBox<String> sortBy;
+    private Details filtersDetails;
     private List<Card> filteredCards;
     private Div alphabetBar;
 
@@ -72,7 +74,7 @@ public class CardBrowserView extends VerticalLayout {
         updateAlphabetBar();
     }
 
-    private HorizontalLayout buildFilterBar() {
+    private Details buildFilterBar() {
         planetFilter = new ComboBox<>("Planet");
         planetFilter.setItems("All", "Mercury", "Venus", "Terra", "Mars", "Jupiter");
         planetFilter.setValue("All");
@@ -88,11 +90,15 @@ public class CardBrowserView extends VerticalLayout {
         sortBy.setValue("Name");
         sortBy.addValueChangeListener(e -> applyFilters());
 
-        HorizontalLayout filterBar = new HorizontalLayout(planetFilter, raceFilter, sortBy);
-        filterBar.addClassName("filter-bar");
-        filterBar.setSpacing(true);
-        filterBar.setPadding(false);
-        return filterBar;
+        HorizontalLayout filterContent = new HorizontalLayout(planetFilter, raceFilter, sortBy);
+        filterContent.addClassName("filter-bar");
+        filterContent.setSpacing(true);
+        filterContent.setPadding(false);
+
+        filtersDetails = new Details("Filters", filterContent);
+        filtersDetails.addClassName("filter-details");
+        filtersDetails.setOpened(false);
+        return filtersDetails;
     }
 
     private Div buildAlphabetBar() {
@@ -197,6 +203,7 @@ public class CardBrowserView extends VerticalLayout {
         currentIndex = 0;
         updateCard();
         updateAlphabetBar();
+        filtersDetails.setOpened(false);
     }
 
     private void navigate(int direction) {
