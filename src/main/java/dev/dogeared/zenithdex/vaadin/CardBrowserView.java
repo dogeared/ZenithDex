@@ -5,6 +5,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.details.Details;
+import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
@@ -30,9 +31,6 @@ import java.util.stream.Collectors;
 @AnonymousAllowed
 public class CardBrowserView extends VerticalLayout {
 
-    private static final int CARD_WIDTH = 200;
-    private static final int CARD_HEIGHT = 313;
-
     private final List<Card> cards;
     private final Map<Integer, String> races;
     private final Map<Integer, String> planets;
@@ -48,6 +46,7 @@ public class CardBrowserView extends VerticalLayout {
     private Details filtersDetails;
     private List<Card> filteredCards;
     private Div alphabetBar;
+    private String positionClass;
 
     public CardBrowserView(CardService cardService) {
         this.cards = List.copyOf(cardService.getCards());
@@ -69,9 +68,22 @@ public class CardBrowserView extends VerticalLayout {
         add(buildFilterBar());
         add(buildAlphabetBar());
         add(buildCardDisplay());
+        add(buildFooter());
 
         updateCard();
         updateAlphabetBar();
+    }
+
+    private Div buildFooter() {
+        Div footer = new Div();
+        footer.addClassName("footer");
+        footer.add(new Span("made with ❤️ by "));
+        Anchor author = new Anchor("https://github.com/dogeared", "dogeared");
+        author.addClassName("footer-link");
+        author.setTarget("_blank");
+        author.getElement().setAttribute("rel", "noopener noreferrer");
+        footer.add(author, new Span("."));
+        return footer;
     }
 
     private Details buildFilterBar() {
@@ -169,6 +181,7 @@ public class CardBrowserView extends VerticalLayout {
         nextBtn.addClassName("desktop-nav-btn");
 
         indexLabel = new Span();
+        indexLabel.addClassName("index-label");
 
         HorizontalLayout nav = new HorizontalLayout(prevBtn, indexLabel, nextBtn);
         nav.addClassName("nav-bar");
@@ -214,7 +227,11 @@ public class CardBrowserView extends VerticalLayout {
 
     private void updateCard() {
         if (filteredCards.isEmpty()) {
-            cardImage.getStyle().set("background-image", "none");
+            cardImage.addClassName("card-image-empty");
+            if (positionClass != null) {
+                cardImage.removeClassName(positionClass);
+                positionClass = null;
+            }
             detailsPanel.removeAll();
             detailsPanel.add(new Paragraph("No cards match the current filters."));
             indexLabel.setText("0 / 0");
@@ -223,11 +240,15 @@ public class CardBrowserView extends VerticalLayout {
 
         Card card = filteredCards.get(currentIndex);
 
-        int offsetX = (card.getCol() - 1) * CARD_WIDTH;
-        int offsetY = (card.getRow() - 1) * CARD_HEIGHT;
-
-        cardImage.getStyle()
-            .set("background-position", "-" + offsetX + "px -" + offsetY + "px");
+        cardImage.removeClassName("card-image-empty");
+        String nextPositionClass = "card-pos-" + card.getCol() + "-" + card.getRow();
+        if (!nextPositionClass.equals(positionClass)) {
+            if (positionClass != null) {
+                cardImage.removeClassName(positionClass);
+            }
+            cardImage.addClassName(nextPositionClass);
+            positionClass = nextPositionClass;
+        }
 
         detailsPanel.removeAll();
 
