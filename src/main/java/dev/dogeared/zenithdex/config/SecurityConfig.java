@@ -16,7 +16,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/images/**", "/styles/**").permitAll()
+                .requestMatchers("/", "/error", "/images/**", "/styles/**").permitAll()
             )
             .with(vaadin(), configurer -> {});
         return http.build();

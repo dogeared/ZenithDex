@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.net.CookieManager;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -20,13 +21,24 @@ class SecurityConfigTest {
     @Value("${local.server.port}")
     private int port;
 
-    private final HttpClient httpClient = HttpClient.newHttpClient();
+    private final HttpClient httpClient = HttpClient.newBuilder()
+        .cookieHandler(new CookieManager())
+        .build();
 
     @Test
     void cardImagesArePubliclyReadable() throws Exception {
         HttpResponse<String> response = get("/images/cards.jpg");
 
         assertThat(response.statusCode()).isEqualTo(200);
+    }
+
+    @Test
+    void oldBrowserFallbackIsReachable() throws Exception {
+        get("/");
+        HttpResponse<String> response = get("/?v-r=oldbrowser");
+
+        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.body()).contains("browser");
     }
 
     @Test
