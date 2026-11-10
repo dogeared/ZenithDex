@@ -30,10 +30,18 @@ jobs:
           java-version: "21"
           cache: maven
 
-      # No tests yet, so this proves the code compiles. The Vaadin production
-      # frontend build happens in the Dockerfile, not here.
+      # Runs the backend, Spring, and Vaadin browserless frontend tests.
+      # JaCoCo fails the build if overall line coverage drops below 90%.
+      # The Vaadin production frontend build happens in the Dockerfile.
       - name: Build and test
         run: mvn -B verify
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: target/site/jacoco
 
   # Only a merge to main publishes. Branch pushes run the build but can never
   # produce a :latest image, so branch code can never reach the NAS.

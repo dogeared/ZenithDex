@@ -1,3 +1,5 @@
 .idea
 target
 generated
+node_modules
+src/main/bundles

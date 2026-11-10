@@ -1,0 +1,320 @@
+html,
+body,
+#outlet {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.card-browser {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 4px !important;
+}
+
+.card-browser .title {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.card-browser .filter-details {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 4px;
+}
+
+.card-browser .filter-bar {
+    justify-content: center;
+    padding-top: 4px;
+}
+
+.card-browser .filter-bar vaadin-combo-box {
+    max-width: 200px;
+}
+
+/* Alphabet bar */
+
+.card-browser .alphabet-bar-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 6px;
+}
+
+.card-browser .alphabet-bar-wrapper::before,
+.card-browser .alphabet-bar-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.card-browser .alphabet-bar-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--lumo-base-color), transparent);
+}
+
+.card-browser .alphabet-bar-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--lumo-base-color), transparent);
+}
+
+.card-browser .alphabet-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 2px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 2px 4px;
+}
+
+.card-browser .alphabet-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.card-browser .alpha-letter {
+    min-width: 2rem;
+    padding: 0 4px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+/* Card display */
+
+.card-browser .card-display {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.card-browser .card-display .card-image-section {
+    order: 1;
+    flex-shrink: 0;
+}
+
+.card-browser .card-display .details-panel {
+    order: 2;
+}
+
+.card-browser .card-display .nav-bar {
+    order: 3;
+    width: 100%;
+    margin-top: 2px;
+}
+
+.card-browser .card-image-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-browser .mobile-nav-btn {
+    display: none !important;
+}
+
+.card-browser .card-image {
+    width: 200px;
+    height: 313px;
+    background-image: url('/images/cards.jpg');
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+}
+
+.card-browser .card-image.card-image-empty {
+    background-image: none;
+}
+
+/* Card sprite positions, generated from card_ref.json (12 columns x 9 rows). */
+.card-browser .card-image.card-pos-1-1 { background-position: 0px 0px; }
+.card-browser .card-image.card-pos-2-1 { background-position: -200px 0px; }
+.card-browser .card-image.card-pos-3-1 { background-position: -400px 0px; }
+.card-browser .card-image.card-pos-4-1 { background-position: -600px 0px; }
+.card-browser .card-image.card-pos-5-1 { background-position: -800px 0px; }
+.card-browser .card-image.card-pos-6-1 { background-position: -1000px 0px; }
+.card-browser .card-image.card-pos-7-1 { background-position: -1200px 0px; }
+.card-browser .card-image.card-pos-8-1 { background-position: -1400px 0px; }
+.card-browser .card-image.card-pos-9-1 { background-position: -1600px 0px; }
+.card-browser .card-image.card-pos-10-1 { background-position: -1800px 0px; }
+.card-browser .card-image.card-pos-11-1 { background-position: -2000px 0px; }
+.card-browser .card-image.card-pos-12-1 { background-position: -2200px 0px; }
+.card-browser .card-image.card-pos-1-2 { background-position: 0px -313px; }
+.card-browser .card-image.card-pos-2-2 { background-position: -200px -313px; }
+.card-browser .card-image.card-pos-3-2 { background-position: -400px -313px; }
+.card-browser .card-image.card-pos-4-2 { background-position: -600px -313px; }
+.card-browser .card-image.card-pos-5-2 { background-position: -800px -313px; }
+.card-browser .card-image.card-pos-6-2 { background-position: -1000px -313px; }
+.card-browser .card-image.card-pos-7-2 { background-position: -1200px -313px; }
+.card-browser .card-image.card-pos-8-2 { background-position: -1400px -313px; }
+.card-browser .card-image.card-pos-9-2 { background-position: -1600px -313px; }
+.card-browser .card-image.card-pos-10-2 { background-position: -1800px -313px; }
+.card-browser .card-image.card-pos-11-2 { background-position: -2000px -313px; }
+.card-browser .card-image.card-pos-12-2 { background-position: -2200px -313px; }
+.card-browser .card-image.card-pos-1-3 { background-position: 0px -626px; }
+.card-browser .card-image.card-pos-2-3 { background-position: -200px -626px; }
+.card-browser .card-image.card-pos-3-3 { background-position: -400px -626px; }
+.card-browser .card-image.card-pos-4-3 { background-position: -600px -626px; }
+.card-browser .card-image.card-pos-5-3 { background-position: -800px -626px; }
+.card-browser .card-image.card-pos-6-3 { background-position: -1000px -626px; }
+.card-browser .card-image.card-pos-7-3 { background-position: -1200px -626px; }
+.card-browser .card-image.card-pos-8-3 { background-position: -1400px -626px; }
+.card-browser .card-image.card-pos-9-3 { background-position: -1600px -626px; }
+.card-browser .card-image.card-pos-10-3 { background-position: -1800px -626px; }
+.card-browser .card-image.card-pos-11-3 { background-position: -2000px -626px; }
+.card-browser .card-image.card-pos-12-3 { background-position: -2200px -626px; }
+.card-browser .card-image.card-pos-1-4 { background-position: 0px -939px; }
+.card-browser .card-image.card-pos-2-4 { background-position: -200px -939px; }
+.card-browser .card-image.card-pos-3-4 { background-position: -400px -939px; }
+.card-browser .card-image.card-pos-4-4 { background-position: -600px -939px; }
+.card-browser .card-image.card-pos-5-4 { background-position: -800px -939px; }
+.card-browser .card-image.card-pos-6-4 { background-position: -1000px -939px; }
+.card-browser .card-image.card-pos-7-4 { background-position: -1200px -939px; }
+.card-browser .card-image.card-pos-8-4 { background-position: -1400px -939px; }
+.card-browser .card-image.card-pos-9-4 { background-position: -1600px -939px; }
+.card-browser .card-image.card-pos-10-4 { background-position: -1800px -939px; }
+.card-browser .card-image.card-pos-11-4 { background-position: -2000px -939px; }
+.card-browser .card-image.card-pos-12-4 { background-position: -2200px -939px; }
+.card-browser .card-image.card-pos-1-5 { background-position: 0px -1252px; }
+.card-browser .card-image.card-pos-2-5 { background-position: -200px -1252px; }
+.card-browser .card-image.card-pos-3-5 { background-position: -400px -1252px; }
+.card-browser .card-image.card-pos-4-5 { background-position: -600px -1252px; }
+.card-browser .card-image.card-pos-5-5 { background-position: -800px -1252px; }
+.card-browser .card-image.card-pos-6-5 { background-position: -1000px -1252px; }
+.card-browser .card-image.card-pos-7-5 { background-position: -1200px -1252px; }
+.card-browser .card-image.card-pos-8-5 { background-position: -1400px -1252px; }
+.card-browser .card-image.card-pos-9-5 { background-position: -1600px -1252px; }
+.card-browser .card-image.card-pos-10-5 { background-position: -1800px -1252px; }
+.card-browser .card-image.card-pos-11-5 { background-position: -2000px -1252px; }
+.card-browser .card-image.card-pos-12-5 { background-position: -2200px -1252px; }
+.card-browser .card-image.card-pos-1-6 { background-position: 0px -1565px; }
+.card-browser .card-image.card-pos-2-6 { background-position: -200px -1565px; }
+.card-browser .card-image.card-pos-3-6 { background-position: -400px -1565px; }
+.card-browser .card-image.card-pos-4-6 { background-position: -600px -1565px; }
+.card-browser .card-image.card-pos-5-6 { background-position: -800px -1565px; }
+.card-browser .card-image.card-pos-6-6 { background-position: -1000px -1565px; }
+.card-browser .card-image.card-pos-7-6 { background-position: -1200px -1565px; }
+.card-browser .card-image.card-pos-8-6 { background-position: -1400px -1565px; }
+.card-browser .card-image.card-pos-9-6 { background-position: -1600px -1565px; }
+.card-browser .card-image.card-pos-10-6 { background-position: -1800px -1565px; }
+.card-browser .card-image.card-pos-11-6 { background-position: -2000px -1565px; }
+.card-browser .card-image.card-pos-12-6 { background-position: -2200px -1565px; }
+.card-browser .card-image.card-pos-1-7 { background-position: 0px -1878px; }
+.card-browser .card-image.card-pos-2-7 { background-position: -200px -1878px; }
+.card-browser .card-image.card-pos-3-7 { background-position: -400px -1878px; }
+.card-browser .card-image.card-pos-4-7 { background-position: -600px -1878px; }
+.card-browser .card-image.card-pos-5-7 { background-position: -800px -1878px; }
+.card-browser .card-image.card-pos-6-7 { background-position: -1000px -1878px; }
+.card-browser .card-image.card-pos-7-7 { background-position: -1200px -1878px; }
+.card-browser .card-image.card-pos-8-7 { background-position: -1400px -1878px; }
+.card-browser .card-image.card-pos-9-7 { background-position: -1600px -1878px; }
+.card-browser .card-image.card-pos-10-7 { background-position: -1800px -1878px; }
+.card-browser .card-image.card-pos-11-7 { background-position: -2000px -1878px; }
+.card-browser .card-image.card-pos-12-7 { background-position: -2200px -1878px; }
+.card-browser .card-image.card-pos-1-8 { background-position: 0px -2191px; }
+.card-browser .card-image.card-pos-2-8 { background-position: -200px -2191px; }
+.card-browser .card-image.card-pos-3-8 { background-position: -400px -2191px; }
+.card-browser .card-image.card-pos-4-8 { background-position: -600px -2191px; }
+.card-browser .card-image.card-pos-5-8 { background-position: -800px -2191px; }
+.card-browser .card-image.card-pos-6-8 { background-position: -1000px -2191px; }
+.card-browser .card-image.card-pos-7-8 { background-position: -1200px -2191px; }
+.card-browser .card-image.card-pos-8-8 { background-position: -1400px -2191px; }
+.card-browser .card-image.card-pos-9-8 { background-position: -1600px -2191px; }
+.card-browser .card-image.card-pos-10-8 { background-position: -1800px -2191px; }
+.card-browser .card-image.card-pos-11-8 { background-position: -2000px -2191px; }
+.card-browser .card-image.card-pos-12-8 { background-position: -2200px -2191px; }
+.card-browser .card-image.card-pos-1-9 { background-position: 0px -2504px; }
+.card-browser .card-image.card-pos-2-9 { background-position: -200px -2504px; }
+.card-browser .card-image.card-pos-3-9 { background-position: -400px -2504px; }
+.card-browser .card-image.card-pos-4-9 { background-position: -600px -2504px; }
+.card-browser .card-image.card-pos-5-9 { background-position: -800px -2504px; }
+.card-browser .card-image.card-pos-6-9 { background-position: -1000px -2504px; }
+.card-browser .card-image.card-pos-7-9 { background-position: -1200px -2504px; }
+.card-browser .card-image.card-pos-8-9 { background-position: -1400px -2504px; }
+.card-browser .card-image.card-pos-9-9 { background-position: -1600px -2504px; }
+.card-browser .card-image.card-pos-10-9 { background-position: -1800px -2504px; }
+.card-browser .card-image.card-pos-11-9 { background-position: -2000px -2504px; }
+.card-browser .card-image.card-pos-12-9 { background-position: -2200px -2504px; }
+
+.card-browser .details-panel {
+    flex: 1;
+    min-width: 0;
+    max-width: 300px;
+    padding: 8px 12px;
+    background: var(--lumo-contrast-5pct);
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.card-browser .card-name {
+    margin-top: 0;
+    margin-bottom: 4px;
+}
+
+.card-browser .stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    margin-bottom: 6px;
+}
+
+.card-browser .card-desc {
+    padding: 6px 8px;
+    background: var(--lumo-contrast-5pct);
+    border-radius: 4px;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+/* Footer */
+
+.card-browser .footer {
+    width: 100%;
+    margin-top: 12px;
+    padding: 8px 0;
+    text-align: center;
+    font-size: var(--lumo-font-size-s);
+    color: var(--lumo-secondary-text-color);
+}
+
+.card-browser .footer-link {
+    color: inherit;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .card-browser .filter-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+
+    .card-browser .filter-bar vaadin-combo-box {
+        margin-top: -8px;
+    }
+
+    .card-browser .card-display {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-browser .card-display .details-panel {
+        width: 100%;
+    }
+
+    .card-browser .mobile-nav-btn {
+        display: inline-flex !important;
+    }
+
+    .card-browser .desktop-nav-btn {
+        display: none !important;
+    }
+}
