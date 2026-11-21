@@ -2,9 +2,10 @@
 
 All notable changes to ZenithDex are documented here. Versions match the git tags.
 
-## Unreleased
+## 0.8.0 - 2026-11-21
 
 ### Added
+- Version number in the corner of the footer.
 - Tabletop (laptop) posture layout for foldables such as iPhone Duo: the card and its details fill the upright half of the screen, and the navigation arrows, alphabet bar, and filters move to the flat half.
 
 ### Changed

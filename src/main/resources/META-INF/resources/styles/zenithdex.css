@@ -281,6 +281,7 @@ body,
 /* Footer */
 
 .card-browser .footer {
+    position: relative;
     width: 100%;
     margin-top: 12px;
     padding: 8px 0;
@@ -292,6 +293,14 @@ body,
 .card-browser .footer-link {
     color: inherit;
     font-weight: 600;
+}
+
+.card-browser .footer-version {
+    position: absolute;
+    right: 0;
+    bottom: 8px;
+    font-size: var(--lumo-font-size-xs);
+    color: var(--lumo-tertiary-text-color);
 }
 
 @media (max-width: 600px) {
@@ -436,5 +445,9 @@ body,
         align-self: end;
         margin-top: 0;
         padding-bottom: max(8px, env(safe-area-inset-bottom));
+    }
+
+    .card-browser .footer-version {
+        bottom: max(8px, env(safe-area-inset-bottom));
     }
 }

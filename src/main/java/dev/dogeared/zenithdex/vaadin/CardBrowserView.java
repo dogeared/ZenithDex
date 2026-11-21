@@ -19,6 +19,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import dev.dogeared.zenithdex.model.Card;
 import dev.dogeared.zenithdex.service.CardService;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Comparator;
 import java.util.List;
@@ -48,7 +49,8 @@ public class CardBrowserView extends VerticalLayout {
     private Div alphabetBar;
     private String positionClass;
 
-    public CardBrowserView(CardService cardService) {
+    public CardBrowserView(CardService cardService,
+                           @Value("${zenithdex.version:dev}") String version) {
         this.cards = List.copyOf(cardService.getCards());
         this.races = cardService.getRaces();
         this.planets = cardService.getPlanets();
@@ -68,13 +70,13 @@ public class CardBrowserView extends VerticalLayout {
         add(buildFilterBar());
         add(buildAlphabetBar());
         add(buildCardDisplay());
-        add(buildFooter());
+        add(buildFooter(version));
 
         updateCard();
         updateAlphabetBar();
     }
 
-    private Div buildFooter() {
+    private Div buildFooter(String version) {
         Div footer = new Div();
         footer.addClassName("footer");
         footer.add(new Span("made with ❤️ by "));
@@ -83,6 +85,10 @@ public class CardBrowserView extends VerticalLayout {
         author.setTarget("_blank");
         author.getElement().setAttribute("rel", "noopener noreferrer");
         footer.add(author, new Span("."));
+
+        Span versionLabel = new Span("v" + version);
+        versionLabel.addClassName("footer-version");
+        footer.add(versionLabel);
         return footer;
     }
 
