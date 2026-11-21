@@ -125,6 +125,9 @@ body,
     height: 313px;
     background-image: url('/images/cards.jpg');
     background-repeat: no-repeat;
+    /* The sheet is 12 x 9 cards, so it scales with the card instead of being
+       tied to the 200 x 313 box. */
+    background-size: 1200% 900%;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     flex-shrink: 0;
@@ -134,115 +137,116 @@ body,
     background-image: none;
 }
 
-/* Card sprite positions, generated from card_ref.json (12 columns x 9 rows). */
-.card-browser .card-image.card-pos-1-1 { background-position: 0px 0px; }
-.card-browser .card-image.card-pos-2-1 { background-position: -200px 0px; }
-.card-browser .card-image.card-pos-3-1 { background-position: -400px 0px; }
-.card-browser .card-image.card-pos-4-1 { background-position: -600px 0px; }
-.card-browser .card-image.card-pos-5-1 { background-position: -800px 0px; }
-.card-browser .card-image.card-pos-6-1 { background-position: -1000px 0px; }
-.card-browser .card-image.card-pos-7-1 { background-position: -1200px 0px; }
-.card-browser .card-image.card-pos-8-1 { background-position: -1400px 0px; }
-.card-browser .card-image.card-pos-9-1 { background-position: -1600px 0px; }
-.card-browser .card-image.card-pos-10-1 { background-position: -1800px 0px; }
-.card-browser .card-image.card-pos-11-1 { background-position: -2000px 0px; }
-.card-browser .card-image.card-pos-12-1 { background-position: -2200px 0px; }
-.card-browser .card-image.card-pos-1-2 { background-position: 0px -313px; }
-.card-browser .card-image.card-pos-2-2 { background-position: -200px -313px; }
-.card-browser .card-image.card-pos-3-2 { background-position: -400px -313px; }
-.card-browser .card-image.card-pos-4-2 { background-position: -600px -313px; }
-.card-browser .card-image.card-pos-5-2 { background-position: -800px -313px; }
-.card-browser .card-image.card-pos-6-2 { background-position: -1000px -313px; }
-.card-browser .card-image.card-pos-7-2 { background-position: -1200px -313px; }
-.card-browser .card-image.card-pos-8-2 { background-position: -1400px -313px; }
-.card-browser .card-image.card-pos-9-2 { background-position: -1600px -313px; }
-.card-browser .card-image.card-pos-10-2 { background-position: -1800px -313px; }
-.card-browser .card-image.card-pos-11-2 { background-position: -2000px -313px; }
-.card-browser .card-image.card-pos-12-2 { background-position: -2200px -313px; }
-.card-browser .card-image.card-pos-1-3 { background-position: 0px -626px; }
-.card-browser .card-image.card-pos-2-3 { background-position: -200px -626px; }
-.card-browser .card-image.card-pos-3-3 { background-position: -400px -626px; }
-.card-browser .card-image.card-pos-4-3 { background-position: -600px -626px; }
-.card-browser .card-image.card-pos-5-3 { background-position: -800px -626px; }
-.card-browser .card-image.card-pos-6-3 { background-position: -1000px -626px; }
-.card-browser .card-image.card-pos-7-3 { background-position: -1200px -626px; }
-.card-browser .card-image.card-pos-8-3 { background-position: -1400px -626px; }
-.card-browser .card-image.card-pos-9-3 { background-position: -1600px -626px; }
-.card-browser .card-image.card-pos-10-3 { background-position: -1800px -626px; }
-.card-browser .card-image.card-pos-11-3 { background-position: -2000px -626px; }
-.card-browser .card-image.card-pos-12-3 { background-position: -2200px -626px; }
-.card-browser .card-image.card-pos-1-4 { background-position: 0px -939px; }
-.card-browser .card-image.card-pos-2-4 { background-position: -200px -939px; }
-.card-browser .card-image.card-pos-3-4 { background-position: -400px -939px; }
-.card-browser .card-image.card-pos-4-4 { background-position: -600px -939px; }
-.card-browser .card-image.card-pos-5-4 { background-position: -800px -939px; }
-.card-browser .card-image.card-pos-6-4 { background-position: -1000px -939px; }
-.card-browser .card-image.card-pos-7-4 { background-position: -1200px -939px; }
-.card-browser .card-image.card-pos-8-4 { background-position: -1400px -939px; }
-.card-browser .card-image.card-pos-9-4 { background-position: -1600px -939px; }
-.card-browser .card-image.card-pos-10-4 { background-position: -1800px -939px; }
-.card-browser .card-image.card-pos-11-4 { background-position: -2000px -939px; }
-.card-browser .card-image.card-pos-12-4 { background-position: -2200px -939px; }
-.card-browser .card-image.card-pos-1-5 { background-position: 0px -1252px; }
-.card-browser .card-image.card-pos-2-5 { background-position: -200px -1252px; }
-.card-browser .card-image.card-pos-3-5 { background-position: -400px -1252px; }
-.card-browser .card-image.card-pos-4-5 { background-position: -600px -1252px; }
-.card-browser .card-image.card-pos-5-5 { background-position: -800px -1252px; }
-.card-browser .card-image.card-pos-6-5 { background-position: -1000px -1252px; }
-.card-browser .card-image.card-pos-7-5 { background-position: -1200px -1252px; }
-.card-browser .card-image.card-pos-8-5 { background-position: -1400px -1252px; }
-.card-browser .card-image.card-pos-9-5 { background-position: -1600px -1252px; }
-.card-browser .card-image.card-pos-10-5 { background-position: -1800px -1252px; }
-.card-browser .card-image.card-pos-11-5 { background-position: -2000px -1252px; }
-.card-browser .card-image.card-pos-12-5 { background-position: -2200px -1252px; }
-.card-browser .card-image.card-pos-1-6 { background-position: 0px -1565px; }
-.card-browser .card-image.card-pos-2-6 { background-position: -200px -1565px; }
-.card-browser .card-image.card-pos-3-6 { background-position: -400px -1565px; }
-.card-browser .card-image.card-pos-4-6 { background-position: -600px -1565px; }
-.card-browser .card-image.card-pos-5-6 { background-position: -800px -1565px; }
-.card-browser .card-image.card-pos-6-6 { background-position: -1000px -1565px; }
-.card-browser .card-image.card-pos-7-6 { background-position: -1200px -1565px; }
-.card-browser .card-image.card-pos-8-6 { background-position: -1400px -1565px; }
-.card-browser .card-image.card-pos-9-6 { background-position: -1600px -1565px; }
-.card-browser .card-image.card-pos-10-6 { background-position: -1800px -1565px; }
-.card-browser .card-image.card-pos-11-6 { background-position: -2000px -1565px; }
-.card-browser .card-image.card-pos-12-6 { background-position: -2200px -1565px; }
-.card-browser .card-image.card-pos-1-7 { background-position: 0px -1878px; }
-.card-browser .card-image.card-pos-2-7 { background-position: -200px -1878px; }
-.card-browser .card-image.card-pos-3-7 { background-position: -400px -1878px; }
-.card-browser .card-image.card-pos-4-7 { background-position: -600px -1878px; }
-.card-browser .card-image.card-pos-5-7 { background-position: -800px -1878px; }
-.card-browser .card-image.card-pos-6-7 { background-position: -1000px -1878px; }
-.card-browser .card-image.card-pos-7-7 { background-position: -1200px -1878px; }
-.card-browser .card-image.card-pos-8-7 { background-position: -1400px -1878px; }
-.card-browser .card-image.card-pos-9-7 { background-position: -1600px -1878px; }
-.card-browser .card-image.card-pos-10-7 { background-position: -1800px -1878px; }
-.card-browser .card-image.card-pos-11-7 { background-position: -2000px -1878px; }
-.card-browser .card-image.card-pos-12-7 { background-position: -2200px -1878px; }
-.card-browser .card-image.card-pos-1-8 { background-position: 0px -2191px; }
-.card-browser .card-image.card-pos-2-8 { background-position: -200px -2191px; }
-.card-browser .card-image.card-pos-3-8 { background-position: -400px -2191px; }
-.card-browser .card-image.card-pos-4-8 { background-position: -600px -2191px; }
-.card-browser .card-image.card-pos-5-8 { background-position: -800px -2191px; }
-.card-browser .card-image.card-pos-6-8 { background-position: -1000px -2191px; }
-.card-browser .card-image.card-pos-7-8 { background-position: -1200px -2191px; }
-.card-browser .card-image.card-pos-8-8 { background-position: -1400px -2191px; }
-.card-browser .card-image.card-pos-9-8 { background-position: -1600px -2191px; }
-.card-browser .card-image.card-pos-10-8 { background-position: -1800px -2191px; }
-.card-browser .card-image.card-pos-11-8 { background-position: -2000px -2191px; }
-.card-browser .card-image.card-pos-12-8 { background-position: -2200px -2191px; }
-.card-browser .card-image.card-pos-1-9 { background-position: 0px -2504px; }
-.card-browser .card-image.card-pos-2-9 { background-position: -200px -2504px; }
-.card-browser .card-image.card-pos-3-9 { background-position: -400px -2504px; }
-.card-browser .card-image.card-pos-4-9 { background-position: -600px -2504px; }
-.card-browser .card-image.card-pos-5-9 { background-position: -800px -2504px; }
-.card-browser .card-image.card-pos-6-9 { background-position: -1000px -2504px; }
-.card-browser .card-image.card-pos-7-9 { background-position: -1200px -2504px; }
-.card-browser .card-image.card-pos-8-9 { background-position: -1400px -2504px; }
-.card-browser .card-image.card-pos-9-9 { background-position: -1600px -2504px; }
-.card-browser .card-image.card-pos-10-9 { background-position: -1800px -2504px; }
-.card-browser .card-image.card-pos-11-9 { background-position: -2000px -2504px; }
-.card-browser .card-image.card-pos-12-9 { background-position: -2200px -2504px; }
+/* Card sprite positions, generated from card_ref.json (12 columns x 9 rows).
+   Percentages keep them correct at any card size. */
+.card-browser .card-image.card-pos-1-1 { background-position: 0% 0%; }
+.card-browser .card-image.card-pos-2-1 { background-position: calc(100% * 1 / 11) 0%; }
+.card-browser .card-image.card-pos-3-1 { background-position: calc(100% * 2 / 11) 0%; }
+.card-browser .card-image.card-pos-4-1 { background-position: calc(100% * 3 / 11) 0%; }
+.card-browser .card-image.card-pos-5-1 { background-position: calc(100% * 4 / 11) 0%; }
+.card-browser .card-image.card-pos-6-1 { background-position: calc(100% * 5 / 11) 0%; }
+.card-browser .card-image.card-pos-7-1 { background-position: calc(100% * 6 / 11) 0%; }
+.card-browser .card-image.card-pos-8-1 { background-position: calc(100% * 7 / 11) 0%; }
+.card-browser .card-image.card-pos-9-1 { background-position: calc(100% * 8 / 11) 0%; }
+.card-browser .card-image.card-pos-10-1 { background-position: calc(100% * 9 / 11) 0%; }
+.card-browser .card-image.card-pos-11-1 { background-position: calc(100% * 10 / 11) 0%; }
+.card-browser .card-image.card-pos-12-1 { background-position: 100% 0%; }
+.card-browser .card-image.card-pos-1-2 { background-position: 0% calc(100% * 1 / 8); }
+.card-browser .card-image.card-pos-2-2 { background-position: calc(100% * 1 / 11) calc(100% * 1 / 8); }
+.card-browser .card-image.card-pos-3-2 { background-position: calc(100% * 2 / 11) calc(100% * 1 / 8); }
+.card-browser .card-image.card-pos-4-2 { background-position: calc(100% * 3 / 11) calc(100% * 1 / 8); }
+.card-browser .card-image.card-pos-5-2 { background-position: calc(100% * 4 / 11) calc(100% * 1 / 8); }
+.card-browser .card-image.card-pos-6-2 { background-position: calc(100% * 5 / 11) calc(100% * 1 / 8); }
+.card-browser .card-image.card-pos-7-2 { background-position: calc(100% * 6 / 11) calc(100% * 1 / 8); }
+.card-browser .card-image.card-pos-8-2 { background-position: calc(100% * 7 / 11) calc(100% * 1 / 8); }
+.card-browser .card-image.card-pos-9-2 { background-position: calc(100% * 8 / 11) calc(100% * 1 / 8); }
+.card-browser .card-image.card-pos-10-2 { background-position: calc(100% * 9 / 11) calc(100% * 1 / 8); }
+.card-browser .card-image.card-pos-11-2 { background-position: calc(100% * 10 / 11) calc(100% * 1 / 8); }
+.card-browser .card-image.card-pos-12-2 { background-position: 100% calc(100% * 1 / 8); }
+.card-browser .card-image.card-pos-1-3 { background-position: 0% calc(100% * 2 / 8); }
+.card-browser .card-image.card-pos-2-3 { background-position: calc(100% * 1 / 11) calc(100% * 2 / 8); }
+.card-browser .card-image.card-pos-3-3 { background-position: calc(100% * 2 / 11) calc(100% * 2 / 8); }
+.card-browser .card-image.card-pos-4-3 { background-position: calc(100% * 3 / 11) calc(100% * 2 / 8); }
+.card-browser .card-image.card-pos-5-3 { background-position: calc(100% * 4 / 11) calc(100% * 2 / 8); }
+.card-browser .card-image.card-pos-6-3 { background-position: calc(100% * 5 / 11) calc(100% * 2 / 8); }
+.card-browser .card-image.card-pos-7-3 { background-position: calc(100% * 6 / 11) calc(100% * 2 / 8); }
+.card-browser .card-image.card-pos-8-3 { background-position: calc(100% * 7 / 11) calc(100% * 2 / 8); }
+.card-browser .card-image.card-pos-9-3 { background-position: calc(100% * 8 / 11) calc(100% * 2 / 8); }
+.card-browser .card-image.card-pos-10-3 { background-position: calc(100% * 9 / 11) calc(100% * 2 / 8); }
+.card-browser .card-image.card-pos-11-3 { background-position: calc(100% * 10 / 11) calc(100% * 2 / 8); }
+.card-browser .card-image.card-pos-12-3 { background-position: 100% calc(100% * 2 / 8); }
+.card-browser .card-image.card-pos-1-4 { background-position: 0% calc(100% * 3 / 8); }
+.card-browser .card-image.card-pos-2-4 { background-position: calc(100% * 1 / 11) calc(100% * 3 / 8); }
+.card-browser .card-image.card-pos-3-4 { background-position: calc(100% * 2 / 11) calc(100% * 3 / 8); }
+.card-browser .card-image.card-pos-4-4 { background-position: calc(100% * 3 / 11) calc(100% * 3 / 8); }
+.card-browser .card-image.card-pos-5-4 { background-position: calc(100% * 4 / 11) calc(100% * 3 / 8); }
+.card-browser .card-image.card-pos-6-4 { background-position: calc(100% * 5 / 11) calc(100% * 3 / 8); }
+.card-browser .card-image.card-pos-7-4 { background-position: calc(100% * 6 / 11) calc(100% * 3 / 8); }
+.card-browser .card-image.card-pos-8-4 { background-position: calc(100% * 7 / 11) calc(100% * 3 / 8); }
+.card-browser .card-image.card-pos-9-4 { background-position: calc(100% * 8 / 11) calc(100% * 3 / 8); }
+.card-browser .card-image.card-pos-10-4 { background-position: calc(100% * 9 / 11) calc(100% * 3 / 8); }
+.card-browser .card-image.card-pos-11-4 { background-position: calc(100% * 10 / 11) calc(100% * 3 / 8); }
+.card-browser .card-image.card-pos-12-4 { background-position: 100% calc(100% * 3 / 8); }
+.card-browser .card-image.card-pos-1-5 { background-position: 0% calc(100% * 4 / 8); }
+.card-browser .card-image.card-pos-2-5 { background-position: calc(100% * 1 / 11) calc(100% * 4 / 8); }
+.card-browser .card-image.card-pos-3-5 { background-position: calc(100% * 2 / 11) calc(100% * 4 / 8); }
+.card-browser .card-image.card-pos-4-5 { background-position: calc(100% * 3 / 11) calc(100% * 4 / 8); }
+.card-browser .card-image.card-pos-5-5 { background-position: calc(100% * 4 / 11) calc(100% * 4 / 8); }
+.card-browser .card-image.card-pos-6-5 { background-position: calc(100% * 5 / 11) calc(100% * 4 / 8); }
+.card-browser .card-image.card-pos-7-5 { background-position: calc(100% * 6 / 11) calc(100% * 4 / 8); }
+.card-browser .card-image.card-pos-8-5 { background-position: calc(100% * 7 / 11) calc(100% * 4 / 8); }
+.card-browser .card-image.card-pos-9-5 { background-position: calc(100% * 8 / 11) calc(100% * 4 / 8); }
+.card-browser .card-image.card-pos-10-5 { background-position: calc(100% * 9 / 11) calc(100% * 4 / 8); }
+.card-browser .card-image.card-pos-11-5 { background-position: calc(100% * 10 / 11) calc(100% * 4 / 8); }
+.card-browser .card-image.card-pos-12-5 { background-position: 100% calc(100% * 4 / 8); }
+.card-browser .card-image.card-pos-1-6 { background-position: 0% calc(100% * 5 / 8); }
+.card-browser .card-image.card-pos-2-6 { background-position: calc(100% * 1 / 11) calc(100% * 5 / 8); }
+.card-browser .card-image.card-pos-3-6 { background-position: calc(100% * 2 / 11) calc(100% * 5 / 8); }
+.card-browser .card-image.card-pos-4-6 { background-position: calc(100% * 3 / 11) calc(100% * 5 / 8); }
+.card-browser .card-image.card-pos-5-6 { background-position: calc(100% * 4 / 11) calc(100% * 5 / 8); }
+.card-browser .card-image.card-pos-6-6 { background-position: calc(100% * 5 / 11) calc(100% * 5 / 8); }
+.card-browser .card-image.card-pos-7-6 { background-position: calc(100% * 6 / 11) calc(100% * 5 / 8); }
+.card-browser .card-image.card-pos-8-6 { background-position: calc(100% * 7 / 11) calc(100% * 5 / 8); }
+.card-browser .card-image.card-pos-9-6 { background-position: calc(100% * 8 / 11) calc(100% * 5 / 8); }
+.card-browser .card-image.card-pos-10-6 { background-position: calc(100% * 9 / 11) calc(100% * 5 / 8); }
+.card-browser .card-image.card-pos-11-6 { background-position: calc(100% * 10 / 11) calc(100% * 5 / 8); }
+.card-browser .card-image.card-pos-12-6 { background-position: 100% calc(100% * 5 / 8); }
+.card-browser .card-image.card-pos-1-7 { background-position: 0% calc(100% * 6 / 8); }
+.card-browser .card-image.card-pos-2-7 { background-position: calc(100% * 1 / 11) calc(100% * 6 / 8); }
+.card-browser .card-image.card-pos-3-7 { background-position: calc(100% * 2 / 11) calc(100% * 6 / 8); }
+.card-browser .card-image.card-pos-4-7 { background-position: calc(100% * 3 / 11) calc(100% * 6 / 8); }
+.card-browser .card-image.card-pos-5-7 { background-position: calc(100% * 4 / 11) calc(100% * 6 / 8); }
+.card-browser .card-image.card-pos-6-7 { background-position: calc(100% * 5 / 11) calc(100% * 6 / 8); }
+.card-browser .card-image.card-pos-7-7 { background-position: calc(100% * 6 / 11) calc(100% * 6 / 8); }
+.card-browser .card-image.card-pos-8-7 { background-position: calc(100% * 7 / 11) calc(100% * 6 / 8); }
+.card-browser .card-image.card-pos-9-7 { background-position: calc(100% * 8 / 11) calc(100% * 6 / 8); }
+.card-browser .card-image.card-pos-10-7 { background-position: calc(100% * 9 / 11) calc(100% * 6 / 8); }
+.card-browser .card-image.card-pos-11-7 { background-position: calc(100% * 10 / 11) calc(100% * 6 / 8); }
+.card-browser .card-image.card-pos-12-7 { background-position: 100% calc(100% * 6 / 8); }
+.card-browser .card-image.card-pos-1-8 { background-position: 0% calc(100% * 7 / 8); }
+.card-browser .card-image.card-pos-2-8 { background-position: calc(100% * 1 / 11) calc(100% * 7 / 8); }
+.card-browser .card-image.card-pos-3-8 { background-position: calc(100% * 2 / 11) calc(100% * 7 / 8); }
+.card-browser .card-image.card-pos-4-8 { background-position: calc(100% * 3 / 11) calc(100% * 7 / 8); }
+.card-browser .card-image.card-pos-5-8 { background-position: calc(100% * 4 / 11) calc(100% * 7 / 8); }
+.card-browser .card-image.card-pos-6-8 { background-position: calc(100% * 5 / 11) calc(100% * 7 / 8); }
+.card-browser .card-image.card-pos-7-8 { background-position: calc(100% * 6 / 11) calc(100% * 7 / 8); }
+.card-browser .card-image.card-pos-8-8 { background-position: calc(100% * 7 / 11) calc(100% * 7 / 8); }
+.card-browser .card-image.card-pos-9-8 { background-position: calc(100% * 8 / 11) calc(100% * 7 / 8); }
+.card-browser .card-image.card-pos-10-8 { background-position: calc(100% * 9 / 11) calc(100% * 7 / 8); }
+.card-browser .card-image.card-pos-11-8 { background-position: calc(100% * 10 / 11) calc(100% * 7 / 8); }
+.card-browser .card-image.card-pos-12-8 { background-position: 100% calc(100% * 7 / 8); }
+.card-browser .card-image.card-pos-1-9 { background-position: 0% 100%; }
+.card-browser .card-image.card-pos-2-9 { background-position: calc(100% * 1 / 11) 100%; }
+.card-browser .card-image.card-pos-3-9 { background-position: calc(100% * 2 / 11) 100%; }
+.card-browser .card-image.card-pos-4-9 { background-position: calc(100% * 3 / 11) 100%; }
+.card-browser .card-image.card-pos-5-9 { background-position: calc(100% * 4 / 11) 100%; }
+.card-browser .card-image.card-pos-6-9 { background-position: calc(100% * 5 / 11) 100%; }
+.card-browser .card-image.card-pos-7-9 { background-position: calc(100% * 6 / 11) 100%; }
+.card-browser .card-image.card-pos-8-9 { background-position: calc(100% * 7 / 11) 100%; }
+.card-browser .card-image.card-pos-9-9 { background-position: calc(100% * 8 / 11) 100%; }
+.card-browser .card-image.card-pos-10-9 { background-position: calc(100% * 9 / 11) 100%; }
+.card-browser .card-image.card-pos-11-9 { background-position: calc(100% * 10 / 11) 100%; }
+.card-browser .card-image.card-pos-12-9 { background-position: 100% 100%; }
 
 .card-browser .details-panel {
     flex: 1;
@@ -316,5 +320,118 @@ body,
 
     .card-browser .desktop-nav-btn {
         display: none !important;
+    }
+}
+
+/* Tabletop (laptop) posture on a foldable such as iPhone Duo: the screen is
+   bent along a horizontal fold, so the viewport is two segments stacked top to
+   bottom. The upright half shows the card and its details; the flat half holds
+   every control. Safari 27.1 exposes this through the Viewport Segments API. */
+
+@media (vertical-viewport-segments: 2) {
+    .card-browser {
+        --tabletop-top: env(viewport-segment-height 0 0, 50dvh);
+        --tabletop-fold: calc(env(viewport-segment-top 0 1, 50dvh) - env(viewport-segment-bottom 0 0, 50dvh));
+
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-rows: var(--tabletop-top) var(--tabletop-fold) auto auto auto 1fr;
+        column-gap: 16px;
+        align-items: center !important;
+        justify-items: center;
+        box-sizing: border-box;
+        max-width: none;
+        min-height: 100dvh;
+        padding: 0 max(12px, env(safe-area-inset-right)) 0 max(12px, env(safe-area-inset-left)) !important;
+    }
+
+    /* Lift the image, details and nav bar out of their wrapper so each can be
+       placed on its own half of the screen. */
+    .card-browser .card-display {
+        display: contents;
+    }
+
+    /* Upright half */
+
+    .card-browser .card-display .card-image-section {
+        grid-area: 1 / 1;
+        justify-self: end;
+    }
+
+    .card-browser .card-image {
+        width: auto;
+        height: min(var(--tabletop-top) - 24px, 46vw * 313 / 200);
+        aspect-ratio: 200 / 313;
+    }
+
+    .card-browser .card-display .details-panel {
+        grid-area: 1 / 2;
+        justify-self: start;
+        flex: none;
+        width: 100%;
+        max-width: 360px;
+        max-height: calc(var(--tabletop-top) - 24px);
+        overflow-y: auto;
+    }
+
+    /* The arrows flanking the image move to the flat half. */
+    .card-browser .mobile-nav-btn {
+        display: none !important;
+    }
+
+    .card-browser .desktop-nav-btn {
+        display: inline-flex !important;
+    }
+
+    /* Flat half */
+
+    .card-browser .card-display .nav-bar {
+        grid-area: 3 / 1 / auto / -1;
+        max-width: 600px;
+        margin-top: 8px;
+    }
+
+    .card-browser .desktop-nav-btn {
+        flex: 1;
+        height: 56px;
+    }
+
+    .card-browser .index-label {
+        min-width: 5em;
+        text-align: center;
+    }
+
+    .card-browser .alphabet-bar-wrapper {
+        grid-area: 4 / 1 / auto / -1;
+        margin: 6px 0 0;
+    }
+
+    .card-browser .filter-details {
+        grid-area: 5 / 1 / auto / -1;
+        margin: 0;
+    }
+
+    .card-browser .filter-bar {
+        flex-direction: row;
+        align-items: flex-end;
+        gap: var(--lumo-space-m);
+    }
+
+    .card-browser .filter-bar vaadin-combo-box {
+        margin-top: 0;
+        min-width: 0;
+    }
+
+    /* The flat half is short; dropping the title keeps the controls on one
+       screen even with the filters open. */
+    .card-browser .title {
+        display: none;
+    }
+
+    .card-browser .footer {
+        grid-area: 6 / 1 / auto / -1;
+        align-self: end;
+        margin-top: 0;
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
     }
 }

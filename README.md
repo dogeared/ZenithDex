@@ -9,6 +9,17 @@ ZenithDex is a card browser for the Zenith tabletop game. It is built with
 Spring Boot and Vaadin and serves a responsive, filterable card viewer from a
 single Java application.
 
+## Foldables
+
+When a foldable phone is half folded with the hinge horizontal (tabletop or
+laptop posture), the card and its details fill the upright half of the screen
+and every control moves to the flat half. Detection is the CSS
+`vertical-viewport-segments: 2` media query from the Viewport Segments API.
+
+On iPhone Duo, Safari 27.1 ships that API as a developer preview. Turn it on
+under Settings > Apps > Safari > Advanced > Feature Flags > "Viewport Segments
+API". Without it the regular layout is used.
+
 ## Stack
 
 - Java 21
