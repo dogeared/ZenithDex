@@ -335,13 +335,15 @@ body,
 
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        grid-template-rows: var(--tabletop-top) var(--tabletop-fold) auto auto auto 1fr;
+        grid-template-rows: var(--tabletop-top) var(--tabletop-fold) 1fr auto auto auto 1fr;
         column-gap: 16px;
         align-items: center !important;
         justify-items: center;
         box-sizing: border-box;
         max-width: none;
-        min-height: 100dvh;
+        /* A definite height lets the empty row above the controls collapse
+           before anything is pushed off screen. */
+        height: 100dvh;
         padding: 0 max(12px, env(safe-area-inset-right)) 0 max(12px, env(safe-area-inset-left)) !important;
     }
 
@@ -383,12 +385,13 @@ body,
         display: inline-flex !important;
     }
 
-    /* Flat half */
+    /* Flat half: the controls sit in the middle, between two equal flexible
+       rows; the footer hangs at the bottom of the second one. */
 
     .card-browser .card-display .nav-bar {
-        grid-area: 3 / 1 / auto / -1;
+        grid-area: 4 / 1 / auto / -1;
         max-width: 600px;
-        margin-top: 8px;
+        margin-top: 0;
     }
 
     .card-browser .desktop-nav-btn {
@@ -402,12 +405,12 @@ body,
     }
 
     .card-browser .alphabet-bar-wrapper {
-        grid-area: 4 / 1 / auto / -1;
+        grid-area: 5 / 1 / auto / -1;
         margin: 6px 0 0;
     }
 
     .card-browser .filter-details {
-        grid-area: 5 / 1 / auto / -1;
+        grid-area: 6 / 1 / auto / -1;
         margin: 0;
     }
 
@@ -429,7 +432,7 @@ body,
     }
 
     .card-browser .footer {
-        grid-area: 6 / 1 / auto / -1;
+        grid-area: 7 / 1 / auto / -1;
         align-self: end;
         margin-top: 0;
         padding-bottom: max(8px, env(safe-area-inset-bottom));
