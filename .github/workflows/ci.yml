@@ -53,6 +53,8 @@ jobs:
     permissions:
       contents: read
       packages: write
+    outputs:
+      version: ${{ steps.version.outputs.value }}
     steps:
       - name: Check out
         uses: actions/checkout@v4
@@ -99,6 +101,38 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  # Tag the merged commit with the POM version once its image is published, so
+  # git tags and image tags line up. A version that is already tagged is left
+  # alone, so merges that do not bump the version change nothing. This is the
+  # only job that can write to the repository.
+  tag:
+    name: Tag version
+    needs: publish
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Tag the commit with the POM version
+        env:
+          VERSION: ${{ needs.publish.outputs.version }}
+        run: |
+          set -euo pipefail
+          if [ -z "$VERSION" ]; then
+            echo "::error::No version came through from the publish job"
+            exit 1
+          fi
+          if git ls-remote --exit-code --tags origin "refs/tags/$VERSION" >/dev/null; then
+            echo "Tag $VERSION already exists; leaving it alone."
+            exit 0
+          fi
+          git tag "$VERSION"
+          git push origin "refs/tags/$VERSION"
+          echo "Tagged $GITHUB_SHA as $VERSION"
 
   # The only deploy path: the agent on the NAS is reachable only through its
   # Cloudflare tunnel and authorises each call with an HMAC over
