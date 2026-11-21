@@ -32,7 +32,10 @@ class CardBrowserViewTest extends SpringBrowserlessTest {
 
         Div footer = find(Div.class).withClassName("footer").single();
         assertThat(footer.getElement().getTextRecursively())
-            .isEqualTo("made with ❤️ by dogeared.");
+            .startsWith("made with ❤️ by dogeared.");
+
+        assertThat(find(Span.class).withClassName("footer-version").single().getText())
+            .matches("v\\d+\\.\\d+\\.\\d+");
 
         Anchor author = find(Anchor.class).withClassName("footer-link").single();
         assertThat(author.getHref()).isEqualTo("https://github.com/dogeared");
@@ -102,7 +105,7 @@ class CardBrowserViewTest extends SpringBrowserlessTest {
 
     @Test
     void emptyDeckShowsMessageAndNavigationIsSafe() {
-        CardBrowserView view = new CardBrowserView(new CardService(new ObjectMapper()));
+        CardBrowserView view = new CardBrowserView(new CardService(new ObjectMapper()), "test");
         UI.getCurrent().add(view);
 
         assertThat(find(Span.class, view).withClassName("index-label").single().getText())
