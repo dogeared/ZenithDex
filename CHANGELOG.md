@@ -2,7 +2,7 @@
 
 All notable changes to ZenithDex are documented here. Versions match the git tags.
 
-## Unreleased
+## 0.8.1 - 2026-11-21
 
 ### Added
 - CI tags the merged commit on `main` with the POM version, unless that tag already exists.

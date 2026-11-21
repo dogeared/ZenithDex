@@ -13,7 +13,7 @@
 
     <groupId>dev.dogeared</groupId>
     <artifactId>zenithdex</artifactId>
-    <version>0.8.0</version>
+    <version>0.8.1</version>
     <name>ZenithDex</name>
     <description>ZenithDex Spring Boot Application</description>
 

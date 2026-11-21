@@ -1,7 +1,7 @@
 # ZenithDex
 
 ![CI](https://github.com/dogeared/ZenithDex/actions/workflows/ci.yml/badge.svg)
-![Version](https://img.shields.io/badge/version-0.8.0-blue)
+![Version](https://img.shields.io/badge/version-0.8.1-blue)
 ![Frontend coverage](https://img.shields.io/badge/frontend%20coverage-98%25-brightgreen)
 ![Backend coverage](https://img.shields.io/badge/backend%20coverage-97%25-brightgreen)
 
