@@ -2,6 +2,11 @@
 
 All notable changes to ZenithDex are documented here. Versions match the git tags.
 
+## Unreleased
+
+### Changed
+- CI actions updated to their current major versions, which run on Node.js 24.
+
 ## 0.8.1 - 2026-11-21
 
 ### Added
